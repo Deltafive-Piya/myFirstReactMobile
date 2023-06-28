@@ -1,0 +1,37 @@
+https://www.youtube.com/watch?v=wzD87Al_pS8
+
+rails new xxxxx -api
+rails g scaffold post title body:text
+	rails db:migrate
+verify rack-cors is commented
+bundle
+"Your Ruby version is 3.2.2, but your Gemfile specified 3.1.2"
+	edit gemfile-
+		ruby "3.1.2" ~> "3.2.2"
+config
+	environments
+		production.rb
+		uncomment-
+			"config.force_ssl = true"
+		edit-
+			origins "example.com" -> origins "*"
+route.rb
+	change the "resources :posts" to 
+		"namespace :api do
+			namespace :v1 do
+				resources :posts
+			end
+		end"
+App
+	Controller
+		create new folder called "api"
+			create new folder called "v1"
+			drag postcontroller into new v1controller Folder
+		posts_controller.rb
+			change postcontroller from 
+			"class PostsController < ApplicationController" to "class Api::V1::PostsController < ApplicationController"
+		ln-20
+			add "api_v1_posts_url@post" to location
+			
+2:47
+			
